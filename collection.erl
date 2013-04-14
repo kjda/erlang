@@ -6,6 +6,7 @@
 -export([sum/1]).
 -export([has_one/2]).
 -export([filter/2]).
+-export([without/2]).
 
 % map([2, 4], fun(X) -> X*2 end).  ---> [4,8]
 map([], _) -> [];
@@ -37,5 +38,10 @@ filtr2(H, T, F, FLAG) ->
   FLAG -> [H|filter(T, F)];
   true -> filter(T,F)
   end.
+
+%without([2,3,3,4]).  ----> [2,4]
+without([], _) -> [];
+without([H|T], H) -> without(T, H);
+without([H|T], V) -> [H|without(T,V)].
 
 
